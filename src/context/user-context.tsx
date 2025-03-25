@@ -1,7 +1,8 @@
 'use client'
 
+import { currentUser } from "@/services/user";
 import { User } from "@/types/user";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 
 interface UserContextType {
@@ -19,8 +20,29 @@ export const useUser = () => {
   return context;
 };
 
-export const UserProvider= ({ children }: { children: React.ReactNode }) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("access_token");
+      
+      if (!token) {
+        return; // Eğer token yoksa, kullanıcı bilgisi alınmaz
+      }
+      
+      try {
+        const userData = await currentUser();
+        console.log(userData);
+        
+        setUser(userData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUser();
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
