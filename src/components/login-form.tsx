@@ -1,5 +1,4 @@
 'use client'
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -22,6 +21,8 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  return (
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState("");
@@ -82,6 +83,14 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
+                <Input id="password" type="password" required />
+              </div>
+              <div className="flex flex-col gap-3">
+                <Button type="submit" className="w-full">
+                  Login
+                </Button>
+                <Button variant="outline" className="w-full">
+                  Login with Google
                 <Input id="password" type="password" required onChange={(e) => setPassword(e.target.value)} />
               </div>
               <div className="flex flex-col gap-3">
@@ -95,7 +104,7 @@ export function LoginForm({
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <a href="#" className="underline underline-offset-4">
+              <a href="/sign-up" className="underline underline-offset-4">
                 Sign up
               </a>
             </div>
