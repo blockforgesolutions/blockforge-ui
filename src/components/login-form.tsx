@@ -17,6 +17,7 @@ import { signIn } from "@/services/auth"
 import { useRouter } from "next/navigation"
 import { Spinner } from "./spinner"
 import { Alert } from "./alert"
+import { useUser } from "@/context/user-context"
 
 export function LoginForm({
   className,
@@ -27,6 +28,7 @@ export function LoginForm({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { setUser } = useUser();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +43,8 @@ export function LoginForm({
       }
       setLoading(false);
       localStorage.setItem("access_token", data.access_token);
-      router.push("/home");
+      setUser(data.user);
+      router.push("/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error.response?.data?.message || "Login failed");
