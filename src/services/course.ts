@@ -1,6 +1,7 @@
 import { api } from "@/lib/api"
+import { Course } from "@/types/course";
 
-export const getCourses = async() => {
+export async function getCourses(): Promise<Course[]> {
     try {
         const response = await api.get('course');
 
@@ -10,9 +11,19 @@ export const getCourses = async() => {
     }
 }
 
-export const getCourseById = async(courseId:string) => {
+export async function getCourseById(courseId:string):Promise<Course> {
     try {
         const response = await api.get(`course/${courseId}`);
+
+        return response.data;
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getCourseBySlug(slug: string):Promise<Course> {
+    try {
+        const response = await api.get(`course/slug/${slug}`);
 
         return response.data;
     } catch (error) {

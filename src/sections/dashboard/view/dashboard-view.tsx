@@ -4,13 +4,17 @@ import CourseHero from "../course-hero";
 import { CourseList } from "../course-list";
 import { Course } from "@/types/course";
 import { getCourses } from "@/services/course";
+import { Spinner } from "@/components/spinner";
 
 export default function DashboardView() {
     const [courses, setCourses] = useState<Course[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchCourses = async () => {
+        setLoading(true);
         const response = await getCourses();
         setCourses(response);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -19,6 +23,8 @@ export default function DashboardView() {
 
     return (
         <div className="container mx-auto px-4">
+
+            {loading && <Spinner size={"large"} />}
 
             <CourseHero />
 
