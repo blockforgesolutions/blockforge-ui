@@ -16,7 +16,7 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
         const token = localStorage.getItem("access_token");
 
         if (!token) {
-            router.push("/login");
+            router.push("/");
         } else if (user === null) {
             setLoading(true);
         } else {

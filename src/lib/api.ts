@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "next/router";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.example.com"; 
 
@@ -26,7 +27,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       console.log("Token expired or invalid");
-      
+      localStorage.removeItem("access_token");
+      Router.push("/");
     }
     return Promise.reject(error);
   }
