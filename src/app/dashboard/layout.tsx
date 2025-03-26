@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 
-export default function UserLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const { user } = useUser();
     const router = useRouter();
     

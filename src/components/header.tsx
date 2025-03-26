@@ -16,8 +16,6 @@ export default function Header() {
     const { user, setUser } = useUser();
 
     const logout = () => setUser(null);
-    console.log(user);
-
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -25,7 +23,7 @@ export default function Header() {
                 <div className="flex h-16 items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
                         <Link
-                            href="/"
+                            href="/dashboard"
                             prefetch={false}
                             className="flex items-center space-x-2 hover:opacity-90 transition-opacity"
                         >
