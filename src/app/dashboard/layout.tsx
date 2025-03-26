@@ -7,26 +7,26 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-    const { user } = useUser();
-    const router = useRouter();
+    // const { user } = useUser();
+    // const router = useRouter();
     
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const token = localStorage.getItem("access_token");
+    // useEffect(() => {
+    //     const token = localStorage.getItem("access_token");
 
-        if (!token) {
-            router.push("/");
-        } else if (user === null) {
-            setLoading(true);
-        } else {
-            setLoading(false);
-        }
-    }, [user, router]);
+    //     if (!token) {
+    //         router.push("/");
+    //     } else if (user === null) {
+    //         setLoading(true);
+    //     } else {
+    //         setLoading(false);
+    //     }
+    // }, [router, user]);
 
-    if (loading) {
-        return null;
-    }
+    // if (loading) {
+    //     return null;
+    // }
 
     return (
         <ThemeProvider>

@@ -1,3 +1,4 @@
+import DashboardView from "@/sections/dashboard/view/dashboard-view"
 
 
 export async function generateMetaData() {
@@ -8,5 +9,5 @@ export async function generateMetaData() {
 }
 
 export default function Page(){
-    return <div> HomeView </div>
+    return <DashboardView />
 }

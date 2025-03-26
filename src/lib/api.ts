@@ -1,7 +1,6 @@
 import axios from "axios";
-import Router from "next/router";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://api.example.com"; 
+const API_URL = process.env.NODE_ENV === "development" ? "http://localhost:8080/api/" : process.env.NEXT_PUBLIC_API_URL
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -28,7 +27,6 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       console.log("Token expired or invalid");
       localStorage.removeItem("access_token");
-      Router.push("/");
     }
     return Promise.reject(error);
   }

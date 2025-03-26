@@ -15,7 +15,10 @@ export default function Header() {
 
     const { user, setUser } = useUser();
 
-    const logout = () => setUser(null);
+    const logout = () => {
+        setUser(null);
+        localStorage.removeItem("access_token");
+    }
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
@@ -40,7 +43,7 @@ export default function Header() {
                         <nav>
                             <Link
                                 prefetch={false}
-                                href="/my-courses"
+                                href={user ? "/my-courses" : "/"}
                                 className="flex space-x-2 items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors md:border md:border-border md:rounded-md md:px-4 md:py-2"
                             >
                                 <BookMarkedIcon className="h-4 w-4" />
@@ -50,12 +53,18 @@ export default function Header() {
 
                         <DarkModeToggle />
 
-                        { user && (
-                            <Notification />
-                        )}
-
-                        {user && (
-                            <UserAvatar user={user} logout={logout} />
+                        {user ? (
+                            <>
+                                <Notification />
+                                <UserAvatar user={user} logout={logout} />
+                            </>
+                        ) : (
+                            <Link
+                                href="/"
+                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors md:border md:border-border md:rounded-md md:px-4 md:py-2"
+                            >
+                                Sign In
+                            </Link>
                         )}
                     </div>
                 </div>
