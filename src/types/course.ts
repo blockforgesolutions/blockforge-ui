@@ -6,6 +6,12 @@ type Instructor = {
     picture:string,
 }
 
+type Category = {
+    id:string,
+    name:string,
+    type:string
+}
+
 export type Course = {
     id: string,
     title: string,
@@ -15,5 +21,6 @@ export type Course = {
     price: number,
     createdAt: Date,
     updatedAt: Date,
-    slug: string
+    slug: string,
+    categories: Category[],
 }

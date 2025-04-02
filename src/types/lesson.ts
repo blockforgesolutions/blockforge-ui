@@ -6,6 +6,7 @@ export type Lesson = {
     moduleId:string,
     videoUrl?:string
     quiz?:string[],
+    slug:string,
     createdAt:Date,
     updatedAt:Date
 }
