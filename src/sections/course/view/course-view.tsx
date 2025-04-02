@@ -25,7 +25,6 @@ export function CourseView() {
         setLoading(true);
         const courseResponse = await getCourseBySlug(slug as string);
         setCourse(courseResponse);
-        console.log(courseResponse);
         
         const modulesResponse = await getModulesByCourseId(courseResponse.id);
         setModules(modulesResponse);
@@ -58,7 +57,7 @@ export function CourseView() {
 
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {modules.length > 0 && <CourseModuleList modules={modules} lessons={lessons} />}
+                    {modules.length > 0 && <CourseModuleList modules={modules} lessons={lessons} slug={slug as string} />}
                     {course && <CourseSidebar instructor={course.instructor} />}
                 </div>
             </div>
