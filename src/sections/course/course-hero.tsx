@@ -23,7 +23,7 @@ export function CourseHero({ course }: CourseHeroProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-black to-black/60" />
             <div className="absolute inset-0 container mx-auto px-4 flex flex-col justify-end pb-12">
                 <Link
-                    href="/"
+                    href="/dashboard"
                     prefetch={false}
                     className="text-white mb-8 flex items-center hover:text-primary transition-colors w-fit"
                 >
