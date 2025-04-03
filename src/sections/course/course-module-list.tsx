@@ -32,7 +32,7 @@ export function CourseModuleList({ modules, lessons, slug }: CourseModuleListPro
                                         key={lesson.id}
                                         className="p-4 hover:bg-muted/50 transition-colors"
                                     >
-                                        <Link href={`/course/${slug}/lesson-title`}>
+                                        <Link href={`/course/${slug}/${lesson.slug}`}>
                                             <div className="flex items-center gap-4">
                                                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-medium">
                                                     {lessonIndex + 1}
