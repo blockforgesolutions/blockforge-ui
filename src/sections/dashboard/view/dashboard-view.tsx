@@ -8,6 +8,7 @@ import { Spinner } from "@/components/spinner";
 import Sidebar from "../course-sidebar";
 import { getCategoriesByType } from "@/services/category";
 import { Category } from "@/types/category";
+import { CourseSort } from "../course-sort";
 
 export default function DashboardView() {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -21,7 +22,7 @@ export default function DashboardView() {
         setLoading(false);
     }
 
-    const fetchCategories = async() => {
+    const fetchCategories = async () => {
         setLoading(true)
         const response = await getCategoriesByType('COURSE')
         setCategories(response);
@@ -44,13 +45,16 @@ export default function DashboardView() {
                 <div className="w-full">
                     <Sidebar categories={categories} />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
-                    {courses.map((course) => (
-                        <CourseList
-                            key={course.id}
-                            course={course}
-                        />
-                    ))}
+                <div>
+                    <CourseSort />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
+                        {courses.map((course) => (
+                            <CourseList
+                                key={course.id}
+                                course={course}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

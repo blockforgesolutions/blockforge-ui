@@ -7,7 +7,7 @@ import MobileFilterSidebar from "./course-mobil-sidebar";
 
 interface SidebarProps {
   categories: { id: string; name: string }[];
-  onFilterChange?: (filters: { categories: string[] }) => void;
+  onFilterChange?: (filters: { categories: string[]; sortBy?: string }) => void;
 }
 
 export default function Sidebar({ categories, onFilterChange }: SidebarProps) {
@@ -28,7 +28,7 @@ export default function Sidebar({ categories, onFilterChange }: SidebarProps) {
       </div>
 
       {/* Desktop */}
-      <aside className="hidden lg:block w-[300px] bg-background p-4 shadow-lg rounded-lg">
+      <aside className="hidden lg:block w-[300px] bg-background p-2 shadow-lg rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Filters</h2>
         <Separator className="mb-4" />
         
@@ -50,9 +50,9 @@ export default function Sidebar({ categories, onFilterChange }: SidebarProps) {
             </div>
           ))}
         </ScrollArea>
-        
+
         <Separator className="my-4" />
-        
+
         <Button 
           className="w-full"
           onClick={handleFilterChange}
