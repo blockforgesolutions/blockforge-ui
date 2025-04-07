@@ -41,7 +41,6 @@ export default function LessonView() {
         try {
             const lessonsMap: Record<string, Lesson[]> = {};
 
-            // Process modules sequentially to avoid race conditions
             // eslint-disable-next-line @next/next/no-assign-module-variable
             for (const module of moduleList) {
                 const moduleLessons = await getLessonsByModuleId(module.id);
@@ -60,8 +59,6 @@ export default function LessonView() {
         fetchFullCourse();
     }, [lessonSlug]);
 
-    console.log(lessons);
-    
 
     return (
         <div className="min-h-screen bg-background flex p-12">
