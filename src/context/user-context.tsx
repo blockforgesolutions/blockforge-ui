@@ -28,12 +28,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       const token = localStorage.getItem("access_token");
       
       if (!token) {
-        return; // Eğer token yoksa, kullanıcı bilgisi alınmaz
+        return;
       }
       
       try {
         const userData = await currentUser();
-        console.log(userData);
         
         setUser(userData);
       } catch (error) {

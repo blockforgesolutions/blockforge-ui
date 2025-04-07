@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { createEnrollment } from "@/services/enrollment"
 import { Course } from "@/types/course"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
@@ -10,6 +11,15 @@ interface CourseHeroProps {
 }
 
 export function CourseHero({ course, isEnrolled }: CourseHeroProps) {
+
+    const handleEnroll = async() => {
+        const response = await createEnrollment(course.id, course.price);
+        console.log(response);
+
+        // push to checkout page
+        // router.push(`/checkout/${response.id}`);
+    }
+
     return (
         <div className="relative h-[60vh] w-full">
             {course.thumbnail && (
@@ -55,9 +65,10 @@ export function CourseHero({ course, isEnrolled }: CourseHeroProps) {
                             ) : (
                                 <Button
                                     asChild
-                                    className="w-full"
+                                    className="w-full cursor-pointer"
+                                    onClick={handleEnroll}
                                 >
-                                    <Link href={`/enroll/${course.slug}`}>Enroll Now</Link>
+                                    <h1> Enroll Now </h1>
                                 </Button>
                             )
                         }
