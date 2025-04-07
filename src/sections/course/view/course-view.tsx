@@ -11,6 +11,7 @@ import { getLessonsByModuleId } from "@/services/lesson";
 import { Lesson } from "@/types/lesson";
 import { CourseModuleList } from "../course-module-list";
 import { CourseSidebar } from "../course-sidebar";
+import { checkEnrollment } from "@/services/enrollment";
 
 
 export function CourseView() {
@@ -20,6 +21,7 @@ export function CourseView() {
     const params = useParams();
     const { slug } = params
     const [loading, setLoading] = useState(true);
+    const [isEnrolled, setIsEnrolled] = useState(false);
 
     const fetchCourse = async () => {
         setLoading(true);
@@ -42,7 +44,15 @@ export function CourseView() {
         });
         setLessons(lessonsMap);
 
+        await fetchEnrollmentStatus(courseResponse.id);
+
         setLoading(false);
+    };
+
+    const fetchEnrollmentStatus = async (courseId: string) => {
+        const enrolled = await checkEnrollment(courseId);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        enrolled ? setIsEnrolled(true) : setIsEnrolled(false);
     };
 
     useEffect(() => {
@@ -53,7 +63,7 @@ export function CourseView() {
         <div className="min-h-screen bg-background">
             {loading && <Spinner size={"large"} />}
 
-            {course && <CourseHero course={course} />}
+            {course && <CourseHero course={course} isEnrolled={isEnrolled} />}
 
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

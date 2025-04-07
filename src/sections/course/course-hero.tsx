@@ -5,10 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface CourseHeroProps {
-    course: Course
+    course: Course,
+    isEnrolled?: boolean
 }
 
-export function CourseHero({ course }: CourseHeroProps) {
+export function CourseHero({ course, isEnrolled }: CourseHeroProps) {
     return (
         <div className="relative h-[60vh] w-full">
             {course.thumbnail && (
@@ -43,7 +44,23 @@ export function CourseHero({ course }: CourseHeroProps) {
                         <div className="text-3xl font-bold text-white mb-4">
                             {course.price === 0 ? "Free" : `$${course.price}`}
                         </div>
-                        <Button className="w-full text-xl"> Enroll Now </Button>
+                        {
+                            isEnrolled ? (
+                                <Button
+                                    asChild
+                                    className="w-full"
+                                >
+                                    <Link href={`/course/${course.slug}`}> Continue </Link>
+                                </Button>
+                            ) : (
+                                <Button
+                                    asChild
+                                    className="w-full"
+                                >
+                                    <Link href={`/enroll/${course.slug}`}>Enroll Now</Link>
+                                </Button>
+                            )
+                        }
                     </div>
                 </div>
             </div>

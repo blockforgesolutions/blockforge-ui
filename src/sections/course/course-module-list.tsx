@@ -6,10 +6,11 @@ import Link from "next/link";
 interface CourseModuleListProps {
     modules: Module[];
     lessons: Record<string, Lesson[]>;
-    slug: string
+    slug: string;
+    isEnrolled?: boolean;
 }
 
-export function CourseModuleList({ modules, lessons, slug }: CourseModuleListProps) {
+export function CourseModuleList({ modules, lessons, slug, isEnrolled }: CourseModuleListProps) {
     return (
         <div className="lg:col-span-2">
             <div className="bg-card rounded-lg p-6 mb-8 border border-border">
@@ -26,32 +27,43 @@ export function CourseModuleList({ modules, lessons, slug }: CourseModuleListPro
                                 </h3>
                             </div>
                             <div className="divide-y divide-border">
-                                {lessons[module.id]?.map((lesson, lessonIndex) => (
-                                    <div
-
-                                        key={lesson.id}
-                                        className="p-4 hover:bg-muted/50 transition-colors"
-                                    >
-                                        <Link href={`/course/${slug}/${lesson.slug}`}>
-                                            <div className="flex items-center gap-4">
-                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-medium">
-                                                    {lessonIndex + 1}
-                                                </div>
-                                                <div className="flex items-center gap-3 text-foreground">
-                                                    <BookOpen className="h-4 w-4 text-muted-foreground" />
-                                                    <span className="font-medium">
-                                                        {lesson.title}
-                                                    </span>
-                                                </div>
+                                {lessons[module.id]?.map((lesson, lessonIndex) => {
+                                    const lessonContent = (
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-medium">
+                                                {lessonIndex + 1}
                                             </div>
-                                        </Link>
-                                    </div>
-                                ))}
+                                            <div className="flex items-center gap-3 text-foreground">
+                                                <BookOpen className="h-4 w-4 text-muted-foreground" />
+                                                <span className="font-medium">{lesson.title}</span>
+                                            </div>
+                                        </div>
+                                    );
+
+                                    return (
+                                        <div
+                                            key={lesson.id}
+                                            className={`p-4 transition-colors ${
+                                                isEnrolled
+                                                    ? "hover:bg-muted/50 cursor-pointer"
+                                                    : "opacity-50"
+                                            }`}
+                                        >
+                                            {isEnrolled ? (
+                                                <Link href={`/course/${slug}/${lesson.slug}`}>
+                                                    {lessonContent}
+                                                </Link>
+                                            ) : (
+                                                lessonContent
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
