@@ -1,5 +1,8 @@
+'use client'
 import DashboardView from "@/sections/dashboard/view/dashboard-view"
-
+import { useUser } from "@/context/user-context";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export async function generateMetaData() {
     return {
@@ -8,6 +11,30 @@ export async function generateMetaData() {
     }
 }
 
-export default function Page(){
+export default function Page() {
+    const { user } = useUser();
+    const router = useRouter();
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const token = localStorage.getItem("access_token");
+
+        if (!token) {
+            router.push("/");
+        } else if (user === null) {
+            setLoading(true);
+        } else {
+            if (user.isEmailVerified === false) {
+                router.push("/email-verification");
+            }
+            setLoading(false);
+        }
+    }, [router, user]);
+
+    if (loading) {
+        return null;
+    }
+
     return <DashboardView />
 }
