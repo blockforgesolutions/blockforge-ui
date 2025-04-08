@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface VerificationEmailProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -40,9 +41,9 @@ export function VerificationEmail({
           </div>
           <div className="mt-4 text-center text-sm">
               Would you like to log in again? Log In{" "}
-            <a href="/" className="underline underline-offset-4">
+            <Link href="/" className="underline underline-offset-4">
               Login
-            </a>
+            </Link>
           </div>
         </CardContent>
       </Card>
