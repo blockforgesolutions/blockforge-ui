@@ -18,7 +18,6 @@ import { Spinner } from "@/components/spinner";
 import { Alert } from "@/components/alert";
 import { useUser } from "@/context/user-context";
 
-// Props tipi tanımı
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
@@ -46,8 +45,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       setLoading(false);
       localStorage.setItem("access_token", data.access_token);
       setUser(data.user);
-      // E-mail doğrulama sayfasına yönlendir
-      router.push("/email-verification-sent");
+      router.push("/dashboard");
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       setError(err.response?.data?.message || "Login failed");
@@ -111,7 +109,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
               </div>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <a href="/sign-up" className="underline underline-offset-4">
                 Sign up
               </a>
