@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import Link from "next/link";
 
 export function ForgotPassword({
   className,
@@ -55,9 +56,9 @@ export function ForgotPassword({
             </div>
             <div className="mt-6 text-center text-lg">
               Remembered your password? {" "}
-              <a href="/" className="underline underline-offset-4">
+              <Link href="/" className="underline underline-offset-4">
                 Login
-              </a>
+              </Link>
             </div>
           </form>
         </CardContent>

@@ -1,4 +1,4 @@
-import { EmailVerificationSent } from "@/components/email-verification-sent";
+import { EmailVerificationSent } from "@/sections/email-verification/email-verification-sent";
 
 export default function EmailVerificationSentPage() {
   return (
