@@ -12,29 +12,29 @@ export async function generateMetaData() {
 }
 
 export default function Page() {
-    const { user } = useUser();
-    const router = useRouter();
+    // const { user } = useUser();
+    // const router = useRouter();
 
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const token = localStorage.getItem("access_token");
+    // useEffect(() => {
+    //     const token = localStorage.getItem("access_token");
 
-        if (!token) {
-            router.push("/");
-        } else if (user === null) {
-            setLoading(true);
-        } else {
-            if (user.isEmailVerified === false) {
-                router.push("/email-verification");
-            }
-            setLoading(false);
-        }
-    }, [router, user]);
+    //     if (!token) {
+    //         router.push("/");
+    //     } else if (user === null) {
+    //         setLoading(true);
+    //     } else {
+    //         if (user.isEmailVerified === false) {
+    //             router.push("/email-verification");
+    //         }
+    //         setLoading(false);
+    //     }
+    // }, [router, user]);
 
-    if (loading) {
-        return null;
-    }
+    // if (loading) {
+    //     return null;
+    // }
 
     return <DashboardView />
 }
