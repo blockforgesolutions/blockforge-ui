@@ -57,7 +57,7 @@ export function CourseView() {
 
     useEffect(() => {
         fetchCourse();
-    }, [])
+    }, [slug])
 
     return (
         <div className="min-h-screen bg-background">

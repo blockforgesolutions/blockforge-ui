@@ -1,3 +1,4 @@
+import Image from "next/image"
 
 interface Instructor {
     id: string,
@@ -20,10 +21,10 @@ export function CourseSidebar({ instructor }: CourseSidebarProps) {
                         <div className="flex items-center gap-3 mb-4">
                             {instructor.picture && (
                                 <div className="relative h-12 w-12">
-                                    <img
+                                    <Image
                                         src={instructor.picture || ""}
                                         alt={instructor.name || "Course Instructor"}
-                                        // fill
+                                        fill
                                         className="rounded-full object-cover"
                                     />
                                 </div>

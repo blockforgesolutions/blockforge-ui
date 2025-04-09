@@ -21,7 +21,8 @@ export function CourseList({ course, progress }: CourseListProps) {
             <div className="bg-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:translate-y-[-4px] border border-border flex flex-col flex-1">
                 <div className="relative h-52 w-full overflow-hidden">
                     {course.thumbnail ? (
-                        <img
+                        <Image
+                            fill
                             src={course.thumbnail || ""}
                             alt={course.title || "Course Image"}
                             className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -57,10 +58,10 @@ export function CourseList({ course, progress }: CourseListProps) {
                                 <div className="flex items-center">
                                     {course.instructor.picture ? (
                                         <div className="relative h-8 w-8 mr-2">
-                                            <img
+                                            <Image
                                                 src={course.instructor.picture || ""}
                                                 alt={course.instructor.name || "Instructor"}
-                                                // fill
+                                                fill
                                                 className="rounded-full object-cover"
                                             />
                                         </div>
