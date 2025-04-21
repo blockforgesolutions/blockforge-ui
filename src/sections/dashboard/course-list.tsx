@@ -14,7 +14,7 @@ interface CourseListProps {
 export function CourseList({ course, progress }: CourseListProps) {
     return (
         <Link
-            href={`/course/${course.slug}`}
+            href={`/dashboard/course/${course.slug}`}
             prefetch={false}
             className="group hover:no-underline flex"
         >

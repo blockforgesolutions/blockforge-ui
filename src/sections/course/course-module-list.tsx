@@ -50,7 +50,7 @@ export function CourseModuleList({ modules, lessons, slug, isEnrolled }: CourseM
                                             }`}
                                         >
                                             {isEnrolled ? (
-                                                <Link href={`/course/${slug}/${lesson.slug}`}>
+                                                <Link href={`/dashboard/course/${slug}/${lesson.slug}`}>
                                                     {lessonContent}
                                                 </Link>
                                             ) : (
