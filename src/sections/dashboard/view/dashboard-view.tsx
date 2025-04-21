@@ -10,6 +10,7 @@ import { getCategoriesByType } from "@/services/category";
 import { Category } from "@/types/category";
 import { CourseSort } from "../course-sort";
 import { CourseSkeletonCard } from "@/components/card-skeleton";
+import { CourseStatus } from "@/enums/course-status";
 
 export default function DashboardView() {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -34,7 +35,7 @@ export default function DashboardView() {
 
     const fetchCourses = async () => {
         setLoading(true);
-        const response = await getCourses();
+        const response = await getCourses(CourseStatus.PUBLISHED);
         setCourses(response);
         setLoading(false);
     }

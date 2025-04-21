@@ -2,9 +2,13 @@ import { api } from "@/lib/api"
 import { Course } from "@/types/course";
 import qs from 'qs';
 
-export async function getCourses(): Promise<Course[]> {
+export async function getCourses(status?:string): Promise<Course[]> {
     try {
-        const response = await api.get('course');
+        const response = await api.get('course', {
+            params:{
+                status: status
+            }
+        });
 
         return response.data;
     } catch (error) {
