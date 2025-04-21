@@ -93,7 +93,7 @@ export function LessonSidebar({
                         <CollapsibleContent className="pl-2">
                             {lessons[module.id]?.map((lesson) => (
                                 <Link
-                                    href={`/course/${course.slug}}/${lesson.slug}`}
+                                    href={`/dashboard/course/${course.slug}}/${lesson.slug}`}
                                     key={lesson.id}
                                     className="cursor-pointer"
                                 >
