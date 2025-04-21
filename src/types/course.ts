@@ -1,16 +1,5 @@
-
-type Instructor = {
-    id: string,
-    name: string,
-    surname: string,
-    picture: string,
-}
-
-type Category = {
-    id: string,
-    name: string,
-    type: string
-}
+import { Category } from "./category"
+import { Instructor } from "./instuructor"
 
 export type Course = {
     id: string,
